@@ -1,0 +1,20 @@
+<div *ngIf=playlist>
+  <h2>{{playlist.title}} Details</h2>
+  <div><span>id: </span>{{playlist.id}}</div>
+  <div><span>title: </span>{{playlist.title}}</div>
+  <div><span>descr: </span>{{playlist.description}}</div>
+  <div>
+    <label>description:
+      <input [(ngModel)]="playlist.description" placeholder="description">
+    </label>
+  </div>
+  <div>
+    <ul class="playlists">
+      <li *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.selected]="track === selectedTrack">
+          <span class="badge">{{track.isrc}}</span> {{track.title}} - {{track.author}}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf=selectedTrack><p>Selected Track: {{selectedTrack.title}}</p></div>
+  <button (click)="goBack()">go back</button>
+</div>
