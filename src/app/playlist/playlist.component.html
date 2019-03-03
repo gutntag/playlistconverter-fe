@@ -1,4 +1,4 @@
-<div *ngIf=playlist>
+<div *ngIf="playlist && playlist.tracks.length > 0">
   <h2>{{playlist.title}} Details</h2>
   <div><span>id: </span>{{playlist.id}}</div>
   <div><span>title: </span>{{playlist.title}}</div>
@@ -11,7 +11,7 @@
   <div>
     <ul class="playlists">
       <li *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.selected]="track === selectedTrack">
-          <span class="badge">{{track.isrc}}</span> {{track.title}} - {{track.author}}
+          <span class="badge">{{track.isrc || 0}}</span> {{track.title}} - {{track.artist}}
       </li>
     </ul>
   </div>

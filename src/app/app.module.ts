@@ -7,6 +7,7 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { FormsModule } from '@angular/forms';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MessagesComponent } from './messages/messages.component'; // <-- NgMode
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

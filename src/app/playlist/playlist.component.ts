@@ -35,11 +35,12 @@ export class PlaylistComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
-    const id = +this.route.snapshot.paramMap.get('id');
+    const id = this.route.snapshot.paramMap.get('id');
+    // this.getPlaylist(this.playlist.externalId);
   }
 
-  getPlaylist(): void {
-    const id = +this.route.snapshot.paramMap.get('id');
+  getPlaylist(id: string): void {
+    console.log('PlaylistComponent: getPlaylist called');
     this.playlistService.getPlaylist(id).subscribe(playlist => this.playlist = playlist);
   }
 

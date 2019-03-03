@@ -3,6 +3,8 @@ import { Playlist } from './playlist';
 import { Track } from './Track';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
+import { HttpClient } from '@angular/common/http';
+import { catchError, map, tap } from 'rxjs/operators';
 
 
 @Injectable({
@@ -23,14 +25,25 @@ export class PlaylistsService {
   ];
 
   getPlaylists(): Observable<Playlist[]> {
-    this.messageService.add('PlaylistService: fetched playlists');
-    return of(this.playlists);
+    return this.httpClient.get<Playlist[]>('http://localhost:8080/deezer/playlists')
+      .pipe(
+        tap(_ => this.log('fetched Playlists'))
+      );
   }
 
-  getPlaylist(id: number): Observable<Playlist> {
-    this.messageService.add(`HeroService: fetched hero id=${id}`);
-    return of(this.playlists.find(playlist => playlist.id === id));
+  getPlaylist(id: string): Observable<Playlist> {
+    const url = `http://localhost:8080/deezer/playlist/${id}`;
+    console.log(`starting fetching getPlaylist from ${url}`);
+    return this.httpClient.get<Playlist>(url)
+      .pipe(
+        tap(_ => this.log(`fetched playlist id=${id}`))
+      );
   }
 
-  constructor(private messageService: MessageService) { }
+  /** Log a HeroService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`PlaylistService: ${message}`);
+  }
+
+  constructor(private httpClient: HttpClient, private messageService: MessageService) { }
 }

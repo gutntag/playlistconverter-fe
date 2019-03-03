@@ -1,11 +1,11 @@
 <h2>Playlists</h2>
 <div>
-  <ul class="playlists">
-    <li *ngFor="let playlist of playlists" (click)="onSelect(playlist)" [class.selected]="playlist === selectedPlaylist">
-        <span class="badge">{{playlist.id}}</span> {{playlist.title}} - {{playlist.description}}
+  <div class="playlists">
+    <div *ngFor="let playlist of playlists" (click)="onSelect(playlist)" [class.selected]="playlist === selectedPlaylist">
+        <span class="badge">{{playlist.id || 1}}</span> {{playlist.title}} - {{playlist.description}}
+        <app-playlist [playlist]="selectedPlaylist"></app-playlist>
         <!-- <a routerLink="/detail/{{hero.id}}"> -->
-    </li>
-  </ul>
+        </div>
+    <app-playlist [playlist]="selectedPlaylist"></app-playlist>
+  </div>
 </div>
-
-<app-playlist [playlist]="selectedPlaylist"></app-playlist>
