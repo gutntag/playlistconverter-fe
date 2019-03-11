@@ -8,13 +8,11 @@
       <input [(ngModel)]="playlist.description" placeholder="description">
     </label>
   </div>
-  <div>
-    <ul class="playlists">
-      <li *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.selected]="track === selectedTrack">
-          <span class="badge">{{track.isrc || 0}}</span> {{track.title}} - {{track.artist}}
-      </li>
-    </ul>
+  <div class="row btn-group">
+        <label class="col col-lg-5 btn btn-outline-primary" btnCheckbox style="margin-left: 1%; margin-right: 1%; margin-top: 1%" *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.checked]="selectedTracks.has(track.isrc)">
+            {{track.title}} - {{track.artist}}
+        </label>
   </div>
-  <div *ngIf=selectedTrack><p>Selected Track: {{selectedTrack.title}}</p></div>
+  <div *ngIf="selectedTracks.size>0"><p>Selected Track: {{selectedTracks.size}}</p></div>
   <button (click)="goBack()">go back</button>
 </div>

@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
 import { HttpClientModule } from '@angular/common/http';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AccordionModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

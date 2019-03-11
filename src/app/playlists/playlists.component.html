@@ -1,11 +1,7 @@
 <h2>Playlists</h2>
-<div>
-  <div class="playlists">
-    <div *ngFor="let playlist of playlists" (click)="onSelect(playlist)" [class.selected]="playlist === selectedPlaylist">
-        <span class="badge">{{playlist.id || 1}}</span> {{playlist.title}} - {{playlist.description}}
-        <app-playlist [playlist]="selectedPlaylist"></app-playlist>
-        <!-- <a routerLink="/detail/{{hero.id}}"> -->
-        </div>
-    <app-playlist [playlist]="selectedPlaylist"></app-playlist>
-  </div>
-</div>
+<accordion *ngFor="let playlist of playlists | keyvalue">
+  <accordion-group (click)="onSelect(playlist.value)" heading="{{playlist.value.title}} - {{playlist.value.description}}">
+      <!-- <a routerLink="/detail/{{hero.id}}"> -->
+        <app-playlist [playlist]="playlists.get(playlist.key)"></app-playlist> 
+  </accordion-group>
+</accordion>

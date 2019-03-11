@@ -1,12 +1,13 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+<div class="container">
+  <div class="row" style="text-align:center">
+    <h1>
+      Welcome to {{ title }}!
+    </h1>
+  </div>
+  <nav class="row">
+      <a routerLink="/playlists">Deezer Playlists</a>
+    </nav>
+  <app-messages class="row"></app-messages>
+  <router-outlet class="row"></router-outlet>
 </div>
-<nav>
-    <a routerLink="/playlists">Deezer Playlists</a>
-  </nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
-
