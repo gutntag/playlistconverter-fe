@@ -7,15 +7,21 @@ import { PlaylistComponent } from './playlist/playlist.component';
 import { FormsModule } from '@angular/forms';
 import { PlaylistsComponent } from './playlists/playlists.component';
 import { MessagesComponent } from './messages/messages.component'; // <-- NgModel lives here
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { LoginspotifyComponent } from './loginspotify/loginspotify.component';
+import { HttpErrorInterceptor } from './http-error.interceptor';
+import { MessageService } from './message.service';
+import { AuthIntercepter } from './auth.interceptor';
+import { LoginService } from './login.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlaylistComponent,
     PlaylistsComponent,
-    MessagesComponent
+    MessagesComponent,
+    LoginspotifyComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +30,20 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     HttpClientModule,
     AccordionModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpErrorInterceptor,
+      multi: true,
+      deps: [MessageService]
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthIntercepter,
+      multi: true,
+      deps: [MessageService, LoginService]
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
