@@ -3,13 +3,10 @@ export class Track {
     title: string;
     artist: string;
 
-    spotifyId: string;
-    deezerId: string;
-    spotifyLink: string;
-    deezerLink: string;
+    externalId: string;
+    link: string;
 
     provider: string;
-    type: string;
 
     constructor(id: string, title: string, artist: string) {
         this.isrc = id;

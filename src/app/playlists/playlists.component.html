@@ -1,7 +1,20 @@
 <h2>Playlists</h2>
+<div *ngFor="let selectedPl of selectedPlaylists">
+  {{selectedPl.title}}<br>
+</div>
+<button type="button" class="btn btn-primary" (click)="transferPlaylist()">
+  Transfer to Spotify
+</button>
 <accordion *ngFor="let playlist of playlists | keyvalue">
-  <accordion-group (click)="onSelect(playlist.value)" heading="{{playlist.value.title}} - {{playlist.value.description}}">
-      <!-- <a routerLink="/detail/{{hero.id}}"> -->
+  <accordion-group panelClass="panel panel-primary" (click)="onSelect(playlist.value)">  
+      <div panelClass="panel panel-primary" accordion-heading>
+        {{playlist.value.title}} - {{playlist.value.description}}
+        <div class="float-right custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" (change)="checkPlaylist(playlist.value)" [id]="playlist.key">
+            <label class="custom-control-label" [for]="playlist.key"></label>
+        </div>
+      </div>
+   <!-- <a routerLink="/detail/{{hero.id}}"> -->
         <app-playlist [playlist]="playlists.get(playlist.key)"></app-playlist> 
   </accordion-group>
 </accordion>

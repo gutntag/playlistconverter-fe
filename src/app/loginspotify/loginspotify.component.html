@@ -1,4 +1,5 @@
 <p>
-  loginspotify works! <br>
-  hier ein {{ test }}
+  <span *ngIf=code&&!user>We are logging you in...</span>
+  <br>
+  <span *ngIf=user>Welcome {{ user.email }} !</span> 
 </p>

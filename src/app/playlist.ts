@@ -9,11 +9,9 @@ export class Playlist {
 
     tracks: Track[];
 
-    deezerId: string;
-    spotifyId: string;
     externalId: string;
     provider: string;
-    type: string;
+    // type: string;
 
     constructor(id: number, title: string, tracks: Track[]) {
         this.id = id;

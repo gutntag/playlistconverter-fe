@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { LoginService } from '../login.service';
+import { MessageService } from '../message.service';
+import { User } from 'src/User';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-loginspotify',
@@ -10,27 +13,36 @@ import { LoginService } from '../login.service';
 })
 export class LoginspotifyComponent implements OnInit {
 
-  test: string;
+  code: string;
+  user: User;
 
   constructor(private route: ActivatedRoute,
               private location: Location,
-              private loginService: LoginService) { }
+              private loginService: LoginService,
+              private messageService: MessageService) { }
 
   ngOnInit() {
-    const code = this.route.snapshot.queryParamMap.get('code');
-    console.log('code: ' + code);
-    if (code !== '') {
-      this.loginViaSpring(code);
+    const path = this.route.snapshot.url[0].path;
+    if(path === 'spotify_callback') {
+      this.code = this.route.snapshot.queryParamMap.get('code');
+
+      console.log('code: ' + this.code);
+      if (this.code !== '') {
+        this.loginViaSpring(this.code);
+      } else {
+        this.messageService.add('Auth Code is missing!');
+      }
+    } else if (path === 'login') {
+      if (this.loginService.getToken() !== '') {
+        this.loginService.getUser().subscribe(user => this.user = user);
+      }
     }
+
   }
 
   loginViaSpring(code: string) {
     console.log('loginViaSpring');
-    this.loginService.springBootLogin(code).subscribe(resp => this.test = resp.headers.get('Set-Cookie'));
-  }
-
-  loginViaSpotify(code: string) {
-    this.loginService.spotifyLogin(code);
+    return this.loginService.springBootLogin(code).subscribe( user => this.user = user.body);
   }
 
 }

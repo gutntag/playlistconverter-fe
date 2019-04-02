@@ -1,4 +1,4 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
@@ -16,9 +16,21 @@ export class AuthIntercepter implements HttpInterceptor {
                 headers: req.headers.set('access_token', token)
             });
 
-            return next.handle(cloned);
-        }
-        else {
+            return next.handle(cloned).pipe(
+                resEvent => {
+                    console.log('test123');
+                    if (resEvent instanceof HttpResponse){
+                        console.log('checking...');
+                        const access_token = resEvent.headers.get('access_token');
+                        if (access_token !== '' && access_token !== 'null' && access_token !== null){
+                            this.loginService.setToken(access_token);
+                            console.log('changing token...');
+                        }
+                    }
+                    return resEvent;
+                }
+            );
+        } else {
             return next.handle(req);
         }
         // throw new Error("Method not implemented.");

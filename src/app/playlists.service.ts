@@ -3,7 +3,7 @@ import { Playlist } from './playlist';
 import { Track } from './Track';
 import { Observable, of } from 'rxjs';
 import { MessageService } from './message.service';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { catchError, map, tap } from 'rxjs/operators';
 
 
@@ -12,27 +12,21 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PlaylistsService {
 
-
-  tracks: Track[] = [
-    new Track('1', 'My live', 'Hans'),
-    new Track('2', 'mein block', 'sido'),
-    new Track('3', 'Hello', 'world')
-  ];
-
-  playlists: Playlist[] = [
-    new Playlist(1, 'test 1', this.tracks),
-    new Playlist(2, 'Playlist 2', this.tracks)
-  ];
+  addPlaylist(playlist: Playlist): Observable<HttpResponse<Playlist>>{
+    return this.httpClient.post<Playlist>('http://localhost:8080/spotify/playlist', playlist, {observe: 'response'}).pipe(
+      tap(_ => this.log('created spotify playlist: ' + playlist))
+    );
+  }
 
   getPlaylists(): Observable<Playlist[]> {
-    return this.httpClient.get<Playlist[]>('http://localhost:8080/spotify/playlists')
+    return this.httpClient.get<Playlist[]>('http://localhost:8080/deezer/playlists')
       .pipe(
         tap(_ => this.log('fetched Playlists'))
       );
   }
 
   getPlaylist(id: string): Observable<Playlist> {
-    const url = `http://localhost:8080/spotify/playlist/${id}`;
+    const url = `http://localhost:8080/deezer/playlist/${id}`;
     console.log(`starting fetching getPlaylist from ${url}`);
     return this.httpClient.get<Playlist>(url)
       .pipe(
