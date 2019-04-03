@@ -2,7 +2,11 @@
 <div *ngFor="let selectedPl of selectedPlaylists">
   {{selectedPl.title}}<br>
 </div>
-<button type="button" class="btn btn-primary" (click)="transferPlaylist()">
+<button type="button" class="btn btn-primary" (click)="preflightPlaylists()">
+  Preflight Spotify-Transfer
+</button>
+--
+<button *ngIf="preflightedPlaylist" type="button" class="btn btn-primary" (click)="transferPlaylist()">
   Transfer to Spotify
 </button>
 <accordion *ngFor="let playlist of playlists | keyvalue">

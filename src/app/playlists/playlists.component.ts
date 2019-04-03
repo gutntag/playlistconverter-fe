@@ -15,11 +15,22 @@ export class PlaylistsComponent implements OnInit {
   playlists: Map<string, Playlist> = new Map(); // map von playlists und dann onClick updated das element der map mit details?
   selectedPlaylist: Playlist;
   selectedPlaylists: Set<Playlist> = new Set();
+  preflightedPlaylist: Playlist;
 
+  preflightPlaylists() {
+    const firstPlaylist: Playlist = this.selectedPlaylists.values().next().value;
+    this.playlistsService.addPlaylistPreflight(firstPlaylist).subscribe(
+      result => {
+        this.preflightedPlaylist = result;
+        this.playlists.get(String(result.externalId)).tracks = result.tracks;
+      }
+    );
+  }
 
   transferPlaylist() {
-    console.log('transfering...')
-    this.playlistsService.addPlaylist(this.selectedPlaylists[0]).subscribe(
+    console.log('transfering...');
+    console.log(this.preflightedPlaylist);
+    this.playlistsService.addPlaylist(this.preflightedPlaylist).subscribe(
       result => {
         if (result.ok) { this.selectedPlaylists.delete(result.body); console.log(result.body + ' deleted'); }
       }
@@ -30,17 +41,17 @@ export class PlaylistsComponent implements OnInit {
     this.playlistsService.getPlaylists().subscribe(pls => pls.map(pl => this.playlists.set(pl.externalId, pl)));
   }
 
-  checkPlaylist(playlist: Playlist){
+  checkPlaylist(playlist: Playlist) {
     console.log('check playlist:' + playlist.title);
-    if(this.selectedPlaylists.has(playlist)){
+    if (this.selectedPlaylists.has(playlist)) {
       this.selectedPlaylists.delete(playlist);
-    }else{
+    } else {
       this.selectedPlaylists.add(playlist);
     }
   }
 
   onSelect(playlist: Playlist) {
-    if(playlist.tracks.length < 1) {
+    if (playlist.tracks.length < 1) {
       this.playlistsService.getPlaylist(playlist.externalId).subscribe(
         details => this.playlists.get(details.externalId).tracks = details.tracks
         );

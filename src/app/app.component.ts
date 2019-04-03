@@ -9,6 +9,7 @@ import { LoginService } from './login.service';
 export class AppComponent {
 
   private loginService: LoginService;
+  title = 'Transfer your playlists from Deezer to Spotify!';
 
   constructor(private loginServiceParam: LoginService) {
     this.loginService = loginServiceParam;
@@ -18,5 +19,4 @@ export class AppComponent {
     return this.loginService.getToken() !== '';
   }
 
-  title = 'Hallo bei playlistapp-fe hehe';
 }

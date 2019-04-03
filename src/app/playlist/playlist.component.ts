@@ -27,8 +27,10 @@ export class PlaylistComponent implements OnInit {
   selectedTracks: Map<string, Track> = new Map();
 
   onSelect(track: Track) {
-    if(!this.selectedTracks.has(track.isrc)){
+    if (!this.selectedTracks.has(track.isrc)) {
       this.selectedTracks.set(track.isrc, track);
+    } else {
+      this.selectedTracks.delete(track.isrc);
     }
     console.log('Selected track: ' + track);
   }

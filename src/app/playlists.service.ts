@@ -12,7 +12,15 @@ import { catchError, map, tap } from 'rxjs/operators';
 })
 export class PlaylistsService {
 
-  addPlaylist(playlist: Playlist): Observable<HttpResponse<Playlist>>{
+  addPlaylistPreflight(playlist: Playlist): Observable<Playlist> {
+    console.log('checking deezer playlist against spotify tracks... ' + playlist);
+    return this.httpClient.post<Playlist>('http://localhost:8080/spotify/playlist/preflight', playlist).pipe(
+      tap(_ => this.log('checked spotify playlist: ' + playlist))
+    );
+  }
+
+  addPlaylist(playlist: Playlist): Observable<HttpResponse<Playlist>> {
+    console.log('adding playlist... ' + playlist);
     return this.httpClient.post<Playlist>('http://localhost:8080/spotify/playlist', playlist, {observe: 'response'}).pipe(
       tap(_ => this.log('created spotify playlist: ' + playlist))
     );

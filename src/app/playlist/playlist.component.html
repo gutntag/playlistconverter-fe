@@ -9,7 +9,7 @@
     </label>
   </div>
   <div class="row btn-group">
-        <label class="col col-lg-5 btn btn-outline-primary" btnCheckbox style="margin-left: 1%; margin-right: 1%; margin-top: 1%" *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.checked]="selectedTracks.has(track.isrc)">
+        <label class="col col-lg-5 btn btn-outline-primary" btnCheckbox style="margin-left: 1%; margin-right: 1%; margin-top: 1%" *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.notfound]="track.link===null" [class.checked]="selectedTracks.has(track.isrc)">
             {{track.title}} - {{track.artist}}
         </label>
   </div>
