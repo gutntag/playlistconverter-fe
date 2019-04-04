@@ -14,6 +14,7 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
 import { MessageService } from './message.service';
 import { AuthIntercepter } from './auth.interceptor';
 import { LoginService } from './login.service';
+import { StepsnavbarComponent } from './stepsnavbar/stepsnavbar.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LoginService } from './login.service';
     PlaylistComponent,
     PlaylistsComponent,
     MessagesComponent,
-    LoginspotifyComponent
+    LoginspotifyComponent,
+    StepsnavbarComponent
   ],
   imports: [
     BrowserModule,

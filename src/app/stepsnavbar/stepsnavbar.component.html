@@ -1,0 +1,18 @@
+<div id="status-buttons">
+    <div class="liner"></div>
+    <button type="button" class="btn wizard-button" [class.btn-success]="userData" [class.btn-primary]="!userData">
+        User <br>
+        Information
+    </button>
+    <button type="button" class="btn wizard-button" [class.btn-success]="selectedPlaylists" [class.btn-secondary]="!userData && !selectedPlaylists" [class.btn-primary]="userData">
+        Select <br>
+        Playlists
+    </button>
+    <button type="button" class="btn wizard-button" [class.btn-success]="confirmedPlaylists" [class.btn-secondary]="!confirmedPlaylists" [class.btn-primary]="selectedPlaylists">
+        Review & <br>
+        Confirm
+    </button>
+    <button type="button" class="btn wizard-button" [class.btn-secondary]="!confirmedPlaylists" [class.btn-primary]="confirmedPlaylists">
+        Done! <br>
+    </button>
+</div>

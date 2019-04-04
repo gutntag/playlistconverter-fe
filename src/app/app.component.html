@@ -1,14 +1,43 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div class="container">
   <div class="row" style="text-align:center">
-    <h1>
-      Welcome to {{ title }}!
-    </h1>
+      <div class="col"></div>
+      <div class="col-10">  
+          <h1>
+              {{ title }}!
+          </h1>
+      </div>
+      <div class="col"></div>
   </div>
-  <nav class="row">
-      <a routerLink="/playlists">Deezer Playlists</a> |
-      <a routerLink="/login">Spotify Login</a>
-    </nav>
-  <app-messages class="row"></app-messages>
-  <router-outlet class="row"></router-outlet>
+  <div class="row">
+      <div class="col"></div>
+      <div class="col-10">  
+        <nav class="nav">
+          <a routerLink="/playlists">Deezer Playlists</a> |
+          <a routerLink="/login">Spotify Login</a>
+        </nav>
+      </div>
+      <div class="col"></div>
+    </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-10 mx-auto p-2 text-center">
+      <app-stepsnavbar></app-stepsnavbar>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-10 mx-auto">
+      <app-messages class="mx-auto"></app-messages>
+    </div>
+    <div class="col"></div>
+  </div>
+  <div class="row">
+      <div class="col"></div>
+      <div class="col-10 mx-auto text-center">
+          <router-outlet class="row"></router-outlet>
+      </div>
+      <div class="col"></div>
+    </div>
 </div>
