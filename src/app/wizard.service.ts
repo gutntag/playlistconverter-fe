@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { LoginService } from './login.service';
+import { Playlist } from './playlist';
 
 @Injectable({
   providedIn: 'root'
@@ -7,7 +8,10 @@ import { LoginService } from './login.service';
 export class WizardService {
 
     private userDataComplete = true;
+
     private playlistSelectionComplete = false;
+    private selectedPlaylists: Set<Playlist> = new Set();
+
     private playlistsTransferComplete = false;
 
     public toggleUserDataFlag() {
@@ -27,6 +31,12 @@ export class WizardService {
     }
     public isPlaylistSelectionComplete(): boolean {
       return this.playlistSelectionComplete;
+    }
+    public setSelectedPlaylists(playlists: Set<Playlist>) {
+      this.selectedPlaylists = playlists;
+    }
+    public getSelectedPlaylists(): Set<Playlist> {
+      return this.selectedPlaylists;
     }
 
     public setPlaylistsTransferComplete(value: boolean) {

@@ -4,6 +4,8 @@ import { Track } from '../Track';
 import { PlaylistsService } from '../playlists.service';
 import { Observable } from 'rxjs';
 import { PlaylistComponent } from '../playlist/playlist.component';
+import { Router } from '@angular/router';
+import { WizardService } from '../wizard.service';
 
 @Component({
   selector: 'app-playlists',
@@ -18,13 +20,10 @@ export class PlaylistsComponent implements OnInit {
   preflightedPlaylist: Playlist;
 
   preflightPlaylists() {
-    const firstPlaylist: Playlist = this.selectedPlaylists.values().next().value;
-    this.playlistsService.addPlaylistPreflight(firstPlaylist).subscribe(
-      result => {
-        this.preflightedPlaylist = result;
-        this.playlists.get(String(result.externalId)).tracks = result.tracks;
-      }
-    );
+    //const firstPlaylist: Playlist = this.selectedPlaylists.values().next().value;
+    this.wizardService.setSelectedPlaylists(this.selectedPlaylists);
+    this.router.navigate(['/playlists/preflight']);
+
   }
 
   transferPlaylist() {
@@ -59,7 +58,7 @@ export class PlaylistsComponent implements OnInit {
     }
   }
 
-  constructor(private playlistsService: PlaylistsService) { }
+  constructor(private playlistsService: PlaylistsService, private wizardService: WizardService, private router: Router) { }
 
   ngOnInit() {
     this.getPlaylists();
