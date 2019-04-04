@@ -1,18 +1,18 @@
 <div id="status-buttons">
     <div class="liner"></div>
-    <button type="button" class="btn wizard-button" [class.btn-success]="userData" [class.btn-primary]="!userData">
+    <button type="button" class="btn wizard-button" [class.btn-success]="isUserDataComplete()" [class.btn-primary]="!isUserDataComplete()">
         User <br>
         Information
     </button>
-    <button type="button" class="btn wizard-button" [class.btn-success]="selectedPlaylists" [class.btn-secondary]="!userData && !selectedPlaylists" [class.btn-primary]="userData">
+    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistSelectionComplete()" [class.btn-secondary]="!isUserDataComplete() && !isPlaylistSelectionComplete" [class.btn-primary]="isUserDataComplete()">
         Select <br>
         Playlists
     </button>
-    <button type="button" class="btn wizard-button" [class.btn-success]="confirmedPlaylists" [class.btn-secondary]="!confirmedPlaylists" [class.btn-primary]="selectedPlaylists">
+    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistsTransferComplete()" [class.btn-secondary]="!isPlaylistsTransferComplete()" [class.btn-primary]="isPlaylistSelectionComplete()">
         Review & <br>
         Confirm
     </button>
-    <button type="button" class="btn wizard-button" [class.btn-secondary]="!confirmedPlaylists" [class.btn-primary]="confirmedPlaylists">
+    <button type="button" class="btn wizard-button" [class.btn-secondary]="!isPlaylistsTransferComplete()" [class.btn-primary]="isPlaylistsTransferComplete()">
         Done! <br>
     </button>
 </div>

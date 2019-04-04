@@ -44,6 +44,10 @@ export class LoginService {
     return localStorage.getItem('token');
   }
 
+  public isLoggedIn(): boolean {
+    return localStorage.getItem('token').length > 0;
+  }
+
   public getUser(): Observable<User> {
     return this.httpClient.get<User>('http://localhost:8080/user');
   }
