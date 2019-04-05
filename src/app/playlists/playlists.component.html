@@ -1,20 +1,18 @@
-<h2>Playlists</h2>
+Please select the Deezer playlists, you wish to transfer to Spotify!
+<br>
 <div *ngFor="let selectedPl of selectedPlaylists">
   {{selectedPl.title}}<br>
 </div>
 <button type="button" class="btn btn-primary" (click)="preflightPlaylists()">
   Preflight Spotify-Transfer
 </button>
---
-<button *ngIf="preflightedPlaylist" type="button" class="btn btn-primary" (click)="transferPlaylist()">
-  Transfer to Spotify
-</button>
+
 <accordion *ngFor="let playlist of playlists | keyvalue">
-  <accordion-group panelClass="panel panel-primary" (click)="onSelect(playlist.value)">  
+  <accordion-group panelClass="panel panel-primary" (click)="loadPlaylistDetails(playlist.value)">  
       <div panelClass="panel panel-primary" accordion-heading>
-        {{playlist.value.title}} - {{playlist.value.description}}
+        {{playlist.value.title}}
         <div class="float-right custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" (change)="checkPlaylist(playlist.value)" [id]="playlist.key">
+            <input type="checkbox" class="custom-control-input" (change)="selectPlaylist(playlist.value)" [id]="playlist.key">
             <label class="custom-control-label" [for]="playlist.key"></label>
         </div>
       </div>

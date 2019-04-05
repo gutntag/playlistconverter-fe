@@ -4,11 +4,11 @@
         User <br>
         Information
     </button>
-    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistSelectionComplete()" [class.btn-secondary]="!isUserDataComplete() && !isPlaylistSelectionComplete" [class.btn-primary]="isUserDataComplete()">
+    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistSelectionComplete()" [class.btn-secondary]="!isUserDataComplete() && !isPlaylistSelectionComplete()" [class.btn-primary]="isUserDataComplete()">
         Select <br>
         Playlists
     </button>
-    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistsTransferComplete()" [class.btn-secondary]="!isPlaylistsTransferComplete()" [class.btn-primary]="isPlaylistSelectionComplete()">
+    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistsTransferComplete()" [class.btn-secondary]="!isPlaylistSelectionComplete()" [class.btn-primary]="isPlaylistSelectionComplete() && !isPlaylistsTransferComplete()">
         Review & <br>
         Confirm
     </button>

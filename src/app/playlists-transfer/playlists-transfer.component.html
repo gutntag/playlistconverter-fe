@@ -1,0 +1,12 @@
+Yay! We successfully added the following playlists to your Spotify account!
+<br>
+<div *ngIf="successFullyTransferedPlaylists.size>0">
+  <accordion *ngFor="let playlist of successFullyTransferedPlaylists">
+    <accordion-group panelClass="panel panel-primary">  
+        <div panelClass="panel panel-primary" accordion-heading>
+          {{playlist.title}}
+        </div>
+        <app-playlist [playlist]="playlist"></app-playlist> 
+    </accordion-group>
+  </accordion>
+</div>

@@ -14,34 +14,19 @@ import { WizardService } from '../wizard.service';
 })
 export class PlaylistsComponent implements OnInit {
 
-  playlists: Map<string, Playlist> = new Map(); // map von playlists und dann onClick updated das element der map mit details?
-  selectedPlaylist: Playlist;
+  playlists: Map<string, Playlist> = new Map(); // Map<externalId, Playlist>
   selectedPlaylists: Set<Playlist> = new Set();
-  preflightedPlaylist: Playlist;
 
   preflightPlaylists() {
-    //const firstPlaylist: Playlist = this.selectedPlaylists.values().next().value;
     this.wizardService.setSelectedPlaylists(this.selectedPlaylists);
     this.router.navigate(['/playlists/preflight']);
-
-  }
-
-  transferPlaylist() {
-    console.log('transfering...');
-    console.log(this.preflightedPlaylist);
-    this.playlistsService.addPlaylist(this.preflightedPlaylist).subscribe(
-      result => {
-        if (result.ok) { this.selectedPlaylists.delete(result.body); console.log(result.body + ' deleted'); }
-      }
-    );
   }
 
   getPlaylists(): void {
     this.playlistsService.getPlaylists().subscribe(pls => pls.map(pl => this.playlists.set(pl.externalId, pl)));
   }
 
-  checkPlaylist(playlist: Playlist) {
-    console.log('check playlist:' + playlist.title);
+  selectPlaylist(playlist: Playlist) {
     if (this.selectedPlaylists.has(playlist)) {
       this.selectedPlaylists.delete(playlist);
     } else {
@@ -49,12 +34,11 @@ export class PlaylistsComponent implements OnInit {
     }
   }
 
-  onSelect(playlist: Playlist) {
+  loadPlaylistDetails(playlist: Playlist) {
     if (playlist.tracks.length < 1) {
       this.playlistsService.getPlaylist(playlist.externalId).subscribe(
         details => this.playlists.get(details.externalId).tracks = details.tracks
         );
-      console.log('Selected playlist: ' + playlist.title);
     }
   }
 

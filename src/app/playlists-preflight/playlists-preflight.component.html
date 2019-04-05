@@ -1,12 +1,17 @@
-<h2>Playlists</h2>
-<button *ngIf="preflightedPlaylist" type="button" class="btn btn-primary">
-  Transfer to Spotify
-</button>
-<accordion *ngFor="let playlist of playlists">
-  <accordion-group panelClass="panel panel-primary">  
-      <div panelClass="panel panel-primary" accordion-heading>
-        {{playlist.title}} - {{playlist.description}}
-      </div>
-      <app-playlist [playlist]="preflightedPlaylist"></app-playlist> 
-  </accordion-group>
-</accordion>
+We checked if Spotify is missing any songs you would like to add in your playlists. 
+<br>
+This is the result!
+<br>
+<div *ngIf="preflightedPlaylists.size>0">
+  <button type="button" class="btn btn-primary" (click)="transferPlaylists()">
+    Transfer to Spotify
+  </button>
+  <accordion *ngFor="let playlist of preflightedPlaylists">
+    <accordion-group panelClass="panel panel-primary">  
+        <div panelClass="panel panel-primary" accordion-heading>
+          {{playlist.title}}
+        </div>
+        <app-playlist [playlist]="playlist"></app-playlist> 
+    </accordion-group>
+  </accordion>
+</div>

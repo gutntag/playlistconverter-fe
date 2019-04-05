@@ -50,7 +50,7 @@ export class HttpErrorInterceptor implements HttpInterceptor {
         window.location.href = url;
     }
 
-    refreshToken(){
+    refreshToken() {
         this.loginService.refreshAccessToken();
     }
 }

@@ -16,6 +16,7 @@ import { AuthIntercepter } from './auth.interceptor';
 import { LoginService } from './login.service';
 import { StepsnavbarComponent } from './stepsnavbar/stepsnavbar.component';
 import { PlaylistsPreflightComponent } from './playlists-preflight/playlists-preflight.component';
+import { PlaylistsTransferComponent } from './playlists-transfer/playlists-transfer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PlaylistsPreflightComponent } from './playlists-preflight/playlists-pre
     MessagesComponent,
     LoginspotifyComponent,
     StepsnavbarComponent,
-    PlaylistsPreflightComponent
+    PlaylistsPreflightComponent,
+    PlaylistsTransferComponent
   ],
   imports: [
     BrowserModule,

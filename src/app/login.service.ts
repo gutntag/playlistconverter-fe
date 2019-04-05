@@ -24,7 +24,7 @@ export class LoginService {
       );
   }
 
-  public refreshAccessToken(){
+  public refreshAccessToken() {
     return this.httpClient.get<User>('http://localhost:8080/login/spotify/refresh', {observe: 'response'}).pipe(
       tap(resp => this.setTokenFromHeader(resp.headers.get('access_token')))
       );

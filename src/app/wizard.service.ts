@@ -13,6 +13,7 @@ export class WizardService {
     private selectedPlaylists: Set<Playlist> = new Set();
 
     private playlistsTransferComplete = false;
+    private transferPlaylists: Set<Playlist> = new Set();
 
     public toggleUserDataFlag() {
       if (this.isUserDataComplete) {
@@ -34,6 +35,7 @@ export class WizardService {
     }
     public setSelectedPlaylists(playlists: Set<Playlist>) {
       this.selectedPlaylists = playlists;
+      this.setPlaylistSelectionComplete(true);
     }
     public getSelectedPlaylists(): Set<Playlist> {
       return this.selectedPlaylists;
@@ -44,6 +46,13 @@ export class WizardService {
     }
     public isPlaylistsTransferComplete(): boolean {
       return this.playlistsTransferComplete;
+    }
+    public setTransferPlaylists(playlists: Set<Playlist>) {
+      this.transferPlaylists = playlists;
+      this.setPlaylistsTransferComplete(true);
+    }
+    public getTransferPlaylists(): Set<Playlist> {
+      return this.transferPlaylists;
     }
 
   constructor(private loginService: LoginService) { }
