@@ -22,11 +22,10 @@ export class PlaylistsPreflightComponent implements OnInit {
 
   ngOnInit() {
     this.playlists = this.wizardService.getSelectedPlaylists();
-    const firstPlaylist: Playlist = this.playlists.values().next().value;
 
-    this.playlistsService.addPlaylistPreflight(firstPlaylist).subscribe(
+    this.playlistsService.addPlaylistsPreflight(Array.from(this.playlists)).subscribe(
       result => {
-        this.preflightedPlaylists.add(result);
+        this.preflightedPlaylists = new Set(result);
       }
     );
   }
