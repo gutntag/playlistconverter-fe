@@ -22,8 +22,10 @@ export class PlaylistsComponent implements OnInit {
     this.router.navigate(['/playlists/preflight']);
   }
 
-  getPlaylists(): void {
-    this.playlistsService.getPlaylists().subscribe(pls => pls.map(pl => this.playlists.set(pl.externalId, pl)));
+  getPlaylists(userId: number): void {
+    this.playlistsService.getPlaylists(userId).subscribe(
+      pls => pls.map(pl => this.playlists.set(pl.externalId, pl))
+    );
   }
 
   selectPlaylist(playlist: Playlist) {
@@ -45,7 +47,11 @@ export class PlaylistsComponent implements OnInit {
   constructor(private playlistsService: PlaylistsService, private wizardService: WizardService, private router: Router) { }
 
   ngOnInit() {
-    this.getPlaylists();
+    if (this.wizardService.isUserDataComplete()) {
+      this.getPlaylists(this.wizardService.getUserId());
+    } else {
+      this.router.navigate(['/login']);
+    }
   }
 
 }

@@ -1,10 +1,10 @@
 <div id="status-buttons">
     <div class="liner"></div>
-    <button type="button" class="btn wizard-button" [class.btn-success]="isUserDataComplete()" [class.btn-primary]="!isUserDataComplete()">
+    <button type="button" class="btn wizard-button" [routerLink]="['/login']" [class.btn-success]="isUserDataComplete()" [class.btn-primary]="!isUserDataComplete()">
         User <br>
         Information
     </button>
-    <button type="button" class="btn wizard-button" [class.btn-success]="isPlaylistSelectionComplete()" [class.btn-secondary]="!isUserDataComplete() && !isPlaylistSelectionComplete()" [class.btn-primary]="isUserDataComplete()">
+    <button type="button" class="btn wizard-button" [routerLink]="['/playlists']" [class.btn-success]="isPlaylistSelectionComplete()" [class.btn-secondary]="!isUserDataComplete() && !isPlaylistSelectionComplete()" [class.btn-primary]="isUserDataComplete()">
         Select <br>
         Playlists
     </button>

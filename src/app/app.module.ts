@@ -14,7 +14,7 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
 import { MessageService } from './message.service';
 import { AuthIntercepter } from './auth.interceptor';
 import { LoginService } from './login.service';
-import { StepsnavbarComponent } from './stepsnavbar/stepsnavbar.component';
+import { WizardNavigationComponent } from './wizard-navigation/wizard-navigation.component';
 import { PlaylistsPreflightComponent } from './playlists-preflight/playlists-preflight.component';
 import { PlaylistsTransferComponent } from './playlists-transfer/playlists-transfer.component';
 
@@ -25,7 +25,7 @@ import { PlaylistsTransferComponent } from './playlists-transfer/playlists-trans
     PlaylistsComponent,
     MessagesComponent,
     LoginspotifyComponent,
-    StepsnavbarComponent,
+    WizardNavigationComponent,
     PlaylistsPreflightComponent,
     PlaylistsTransferComponent
   ],

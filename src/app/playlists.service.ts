@@ -21,16 +21,11 @@ export class PlaylistsService {
 
   addPlaylists(playlists: Playlist[]): Observable<HttpResponse<Playlist[]>> {
     console.log('adding playlist... ' + playlists);
-    return this.httpClient.post<Playlist[]>('http://localhost:8080/spotify/playlist', playlists, {observe: 'response'}).pipe(
-      tap(_ => this.log('created spotify playlist: ' + playlists))
-    );
+    return this.httpClient.post<Playlist[]>('http://localhost:8080/spotify/playlist', playlists, {observe: 'response'});
   }
 
-  getPlaylists(): Observable<Playlist[]> {
-    return this.httpClient.get<Playlist[]>('http://localhost:8080/deezer/playlists')
-      .pipe(
-        tap(_ => this.log('fetched Playlists'))
-      );
+  getPlaylists(myUserId: number): Observable<Playlist[]> {
+    return this.httpClient.get<Playlist[]>('http://localhost:8080/deezer/playlists', {params: {userId: myUserId.toString()}});
   }
 
   getPlaylist(id: string): Observable<Playlist> {
@@ -44,7 +39,7 @@ export class PlaylistsService {
 
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add(`PlaylistService: ${message}`);
+    console.log(`PlaylistService: ${message}`);
   }
 
   constructor(private httpClient: HttpClient, private messageService: MessageService) { }

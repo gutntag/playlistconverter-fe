@@ -52,6 +52,10 @@ export class LoginService {
     return this.httpClient.get<User>('http://localhost:8080/user');
   }
 
+  public verifyDeezerUser(deezerUserId: number): Observable<HttpResponse<User>> {
+    return this.httpClient.get<User>(`http://localhost:8080/deezer/user/${deezerUserId}`, {observe: 'response'});
+  }
+
   /** Log a LoginService message with the MessageService */
   private log(message: string) {
     this.messageService.add(`LoginService: ${message}`);

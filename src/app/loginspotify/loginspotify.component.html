@@ -3,3 +3,21 @@
   <br>
   <span *ngIf=user>Welcome {{ user.email }} !</span> 
 </p>
+
+<div *ngIf="user && !validDeezerUser">
+  <p>Now the only thing more we need is your deezer account id:</p>
+  <label [class.invalid]="!validDeezerUser" [class.valid]="validDeezerUser">Deezer Account ID:
+    <input [(ngModel)]="deezerId" placeholder="123456789">
+  </label>
+  <button type="button" class="btn btn-primary" (click)="checkDeezerId()">
+    Login
+  </button>
+</div>
+
+<div *ngIf="user && validDeezerUser">
+  <p>We got all we need. Continue now...</p>
+    <button type="button" class="btn btn-primary" [routerLink]="['/playlists']">
+        Continue
+      </button>
+</div>
+

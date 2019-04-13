@@ -7,7 +7,8 @@ import { Playlist } from './playlist';
 })
 export class WizardService {
 
-    private userDataComplete = true;
+    private userDataComplete = false;
+    private deezerUserId = 0;
 
     private playlistSelectionComplete = false;
     private selectedPlaylists: Set<Playlist> = new Set();
@@ -15,16 +16,15 @@ export class WizardService {
     private playlistsTransferComplete = false;
     private transferPlaylists: Set<Playlist> = new Set();
 
-    public toggleUserDataFlag() {
-      if (this.isUserDataComplete) {
-        this.userDataComplete = false;
-      } else {
-        this.userDataComplete = true;
-      }
-    }
     public isUserDataComplete(): boolean {
-      return this.loginService.isLoggedIn();
-      // return this.userDataComplete;
+      return this.userDataComplete && this.loginService.isLoggedIn();
+    }
+    public setUserId(deezerUserId: number) {
+      this.deezerUserId = deezerUserId;
+      this.userDataComplete = true;
+    }
+    public getUserId() {
+      return this.deezerUserId;
     }
 
     public setPlaylistSelectionComplete(value: boolean) {

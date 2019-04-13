@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { WizardService } from '../wizard.service';
 
 @Component({
-  selector: 'app-stepsnavbar',
-  templateUrl: './stepsnavbar.component.html',
-  styleUrls: ['./stepsnavbar.component.css']
+  selector: 'app-wizard-navigation',
+  templateUrl: './wizard-navigation.component.html',
+  styleUrls: ['./wizard-navigation.component.css']
 })
-export class StepsnavbarComponent implements OnInit {
+export class WizardNavigationComponent implements OnInit {
 
   constructor(private wizardService: WizardService) { }
 

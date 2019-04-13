@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { StepsnavbarComponent } from './stepsnavbar.component';
+import { WizardNavigationComponent } from './wizard-navigation.component';
 
-describe('StepsnavbarComponent', () => {
-  let component: StepsnavbarComponent;
-  let fixture: ComponentFixture<StepsnavbarComponent>;
+describe('WizardNavigationComponent', () => {
+  let component: WizardNavigationComponent;
+  let fixture: ComponentFixture<WizardNavigationComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StepsnavbarComponent ]
+      declarations: [ WizardNavigationComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(StepsnavbarComponent);
+    fixture = TestBed.createComponent(WizardNavigationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
