@@ -18,10 +18,9 @@ export class PlaylistsTransferComponent implements OnInit {
 
   ngOnInit() {
     this.transferPlaylists = this.wizardService.getTransferPlaylists();
-    const firstPlaylist: Playlist = this.transferPlaylists.values().next().value;
-    this.playlistsService.addPlaylist(firstPlaylist).subscribe(
+    this.playlistsService.addPlaylists(Array.from(this.transferPlaylists)).subscribe(
       result => {
-        if (result.ok) { this.successFullyTransferedPlaylists.add(result.body); }
+        if (result.ok) { this.successFullyTransferedPlaylists = new Set(result.body); }
       }
     );
   }

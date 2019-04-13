@@ -19,10 +19,10 @@ export class PlaylistsService {
     );
   }
 
-  addPlaylist(playlist: Playlist): Observable<HttpResponse<Playlist>> {
-    console.log('adding playlist... ' + playlist);
-    return this.httpClient.post<Playlist>('http://localhost:8080/spotify/playlist', playlist, {observe: 'response'}).pipe(
-      tap(_ => this.log('created spotify playlist: ' + playlist))
+  addPlaylists(playlists: Playlist[]): Observable<HttpResponse<Playlist[]>> {
+    console.log('adding playlist... ' + playlists);
+    return this.httpClient.post<Playlist[]>('http://localhost:8080/spotify/playlist', playlists, {observe: 'response'}).pipe(
+      tap(_ => this.log('created spotify playlist: ' + playlists))
     );
   }
 
