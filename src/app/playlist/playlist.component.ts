@@ -13,16 +13,6 @@ import { Location } from '@angular/common';
 export class PlaylistComponent implements OnInit {
 
   @Input() playlist: Playlist;
-  /* {
-    id: 1,
-    title: 'Erste Playlist',
-    description: 'Test descr2.',
-    tracks: [
-      new Track('1', 'My live', 'Hans'),
-      new Track('2', 'mein block', 'sido'),
-      new Track('3', 'Hello', 'world')
-    ]
-  }; */
 
   selectedTracks: Map<string, Track> = new Map();
 
@@ -32,7 +22,6 @@ export class PlaylistComponent implements OnInit {
     } else {
       this.selectedTracks.delete(track.isrc);
     }
-    console.log('Selected track: ' + track);
   }
 
   constructor(private route: ActivatedRoute,
@@ -40,17 +29,14 @@ export class PlaylistComponent implements OnInit {
               private location: Location) { }
 
   ngOnInit() {
-    const id = this.route.snapshot.paramMap.get('id');
+    // todo: standalone playlist component by receiving playlist id from path?
+    // const id = this.route.snapshot.paramMap.get('id');
     // this.getPlaylist(this.playlist.externalId);
   }
 
   getPlaylist(id: string): void {
     console.log('PlaylistComponent: getPlaylist called');
     this.playlistService.getPlaylist(id).subscribe(playlist => this.playlist = playlist);
-  }
-
-  goBack(): void {
-    this.location.back();
   }
 
 }

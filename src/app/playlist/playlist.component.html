@@ -1,18 +1,9 @@
 <div *ngIf="playlist && playlist.tracks.length > 0" class="text-left">
-  <h2>{{playlist.title}} Details</h2>
-  <div><span>id: </span>{{playlist.id}}</div>
-  <div><span>title: </span>{{playlist.title}}</div>
-  <div><span>descr: </span>{{playlist.description}}</div>
-  <div>
-    <label>description:
-      <input [(ngModel)]="playlist.description" placeholder="description">
-    </label>
-  </div>
+  <h2>Tracks of {{playlist.title}} </h2>
   <div class="row btn-group">
         <label class="col col-lg-5 btn btn-outline-primary" btnCheckbox style="margin-left: 1%; margin-right: 1%; margin-top: 1%" *ngFor="let track of playlist.tracks" (click)="onSelect(track)" [class.notfound]="track.link===null" [class.checked]="selectedTracks.has(track.isrc)">
             {{track.title}} - {{track.artist}}
         </label>
   </div>
   <div *ngIf="selectedTracks.size>0"><p>Selected Track: {{selectedTracks.size}}</p></div>
-  <button (click)="goBack()">go back</button>
 </div>

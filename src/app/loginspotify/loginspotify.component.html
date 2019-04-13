@@ -7,7 +7,7 @@
 <div *ngIf="user && !validDeezerUser">
   <p>Now the only thing more we need is your deezer account id:</p>
   <label [class.invalid]="!validDeezerUser" [class.valid]="validDeezerUser">Deezer Account ID:
-    <input [(ngModel)]="deezerId" placeholder="123456789">
+    <input id="deezer_id" [(ngModel)]="deezerId" placeholder="123456789">
   </label>
   <button type="button" class="btn btn-primary" (click)="checkDeezerId()">
     Login
